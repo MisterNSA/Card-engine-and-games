@@ -16,10 +16,9 @@ class HigherLowerGame(object):
             print("Is the next card higher or lower? higher = h lower = l")
             guess = input("your guess: ")
             guess = guess.lower()
-            if guess == 'h' or 'l':
+            if guess in ["h", "higher", "l", "lower"]:
                 valid_input = True
             else:
-                valid_input = False
                 print(
                     "That wasnt a valid input. Please enter h for higher or l for lower!")
         return guess
