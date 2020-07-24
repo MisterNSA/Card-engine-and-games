@@ -1,7 +1,15 @@
+#####################################################################################
+# Description: This is ment to be a Base for all diffrent kinds of Card game        #
+# Creator: Tobias Dominik Weber aka MisterNSA                                       #
+# Version: 0.1 24.07.2020                                                           #
+#####################################################################################
+
 import random
 
 
 class Card(object):
+    # string - suit = Spades, Clubs, Diamond or Hearts
+    # string - value = 1 to 10, Jack, Queen, King, Ace
     def __init__(self, suit, val):
         self.suit = suit
         self.value = val
@@ -13,7 +21,9 @@ class Card(object):
 
 class Deck(object):
     def __init__(self):
+        # list - cards = The List of all cards stored in this deck
         self.cards = []
+        # Create Cards and shuffle the Deck
         self.build()
         self.shuffle()
 
@@ -41,6 +51,8 @@ class Deck(object):
 
 class Player(object):
     def __init__(self, name):
+        # string - name = name of the Player | Questionable, if needed
+        # list - hand = All Cards the Player has
         self.name = name
         self.hand = []
 
