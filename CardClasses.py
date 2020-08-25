@@ -81,10 +81,10 @@ class Deck(object):
 class Player(object):
     # ------------------------------------------------------------------- Builder ----------------------------------------------------------------
 
-    def __init__(self, name):
+    def __init__(self):
         # string - name = name of the Player | Questionable, if needed
         # list - hand = All Cards the Player has
-        self.name = name
+        self.name = input("Please enter your name: ")
         self.hand = []
 
     # ------------------------------------------------------------------- Setter -----------------------------------------------------------------
