@@ -33,12 +33,11 @@ class Card(object):
         elif self.value == 14:
             self.name = ("Ace of " + self.suit)
 
-    # ------------------------------------------------------------------- Getter ----------------------------------------------------------------- 
+    # ------------------------------------------------------------------- Getter -----------------------------------------------------------------
 
     # returns the name of card
     def show(self):
         return self.name
-
 
 
 class Deck(object):
@@ -77,15 +76,16 @@ class Deck(object):
             print(card.show())
 
 
-
 class Player(object):
     # ------------------------------------------------------------------- Builder ----------------------------------------------------------------
 
     def __init__(self):
-        # string - name = name of the Player | Questionable, if needed
+        # string - name = name of the Player
         # list - hand = All Cards the Player has
+        # int - hand_value = Total of all card values in hand
         self.name = input("Please enter your name: ")
         self.hand = []
+        self.hand_value = 0
 
     # ------------------------------------------------------------------- Setter -----------------------------------------------------------------
 
@@ -98,6 +98,12 @@ class Player(object):
     def discard(self, placeInHand):
         return self.hand.pop(placeInHand - 1)
 
+    # sets self.hand_value to the total value of cards in hand | Sometimes, get_hand_score is enough, this is for casese it isnt
+    def set_hand_value(self):
+        self.hand_value = 0
+        for Card in self.hand:
+            self.hand_value += Card.value
+
     # ------------------------------------------------------------------- Getter -----------------------------------------------------------------
 
     # prints the hand with the position of each card
@@ -107,4 +113,9 @@ class Player(object):
             print("Card {} = {}".format(count, card.show()))
             count += 1
 
-
+    # returns the hand_value to the total of all card values in Hand
+    def get_hand_value(self):
+        hand_value = 0
+        for card in self.hand:
+            hand_value += card.value
+        return hand_value
