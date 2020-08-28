@@ -18,10 +18,10 @@ class Card(object):
         self.value = val
         self.set_name()
 
-    # ------------------------------------------------------------------- Setter -----------------------------------------------------------------
+    # ------------------------------------------------------------------- Setup ------------------------------------------------------------------
 
-    # Builds name by value adn suit: 2 to 10, Jack, Queen, King, Ace
     def set_name(self):
+        """Builds name by value and suit: 2 to 10, Jack, Queen, King, Ace"""
         if self.value <= 10:
             self.name = (str(self.value) + " of " + self.suit)
         elif self.value == 11:
@@ -33,10 +33,10 @@ class Card(object):
         elif self.value == 14:
             self.name = ("Ace of " + self.suit)
 
-    # ------------------------------------------------------------------- Getter -----------------------------------------------------------------
+    # ------------------------------------------------------------------- Misc -------------------------------------------------------------------
 
-    # returns the name of card
     def show(self):
+        """returns the cards name"""
         return self.name
 
 
@@ -50,28 +50,28 @@ class Deck(object):
         self.build()
         self.shuffle()
 
-    # ------------------------------------------------------------------- Setter -----------------------------------------------------------------
+    # ------------------------------------------------------------------- Setup ----------------------------------------------------------------
 
-    # initialise Cards
     def build(self):
+        """initialise Cards"""
         for suit in ["Spades", "Clubs", "Diamonds", "Hearts"]:
             for value in range(2, 15):
                 self.cards.append(Card(suit, value))
 
-    # shuffles the cards
+    # ------------------------------------------------------------------- Misc -------------------------------------------------------------------
+
     def shuffle(self):
+        """shuffles the cards"""
         for i in range(len(self.cards)-1, 0, -1):
             r = random.randint(0, i)
             self.cards[i], self.cards[r] = self.cards[r], self.cards[i]
 
-    # ------------------------------------------------------------------- Getter -----------------------------------------------------------------
-
-    # returns a card and pops it from the Deck
     def drawCard(self):
+        """returns a card and pops it from the Deck"""
         return self.cards.pop()
 
-    # prints all cards in Deck
     def show(self):
+        """prints all cards in Deck"""
         for card in self.cards:
             print(card.show())
 
@@ -87,35 +87,39 @@ class Player(object):
         self.hand = []
         self.hand_value = 0
 
-    # ------------------------------------------------------------------- Setter -----------------------------------------------------------------
+    # ------------------------------------------------------------------- Misc -------------------------------------------------------------------
 
-    # adds a card from the deck to the players hand
     def draw(self, Deck):
+        """adds a card from the deck to the players hand"""
         self.hand.append(Deck.drawCard())
         return self
 
-    # takes the position of a card and removes it from the hand
     def discard(self, placeInHand):
+        """takes the position of a card and removes it from the hand"""
         return self.hand.pop(placeInHand - 1)
 
-    # sets self.hand_value to the total value of cards in hand | Sometimes, get_hand_score is enough, this is for casese it isnt
     def set_hand_value(self):
+        """sets self.hand_value to the total value of cards in hand | Sometimes, get_hand_score is enough, this is for casese it isnt"""
         self.hand_value = 0
         for Card in self.hand:
             self.hand_value += Card.value
 
-    # ------------------------------------------------------------------- Getter -----------------------------------------------------------------
-
-    # prints the hand with the position of each card
     def showHand(self):
+        """prints the hand with the position of each card"""
         count = 1
         for card in self.hand:
             print("Card {} = {}".format(count, card.show()))
             count += 1
 
-    # returns the hand_value to the total of all card values in Hand
     def get_hand_value(self):
+        """returns the hand_value to the total of all card values in Hand"""
         hand_value = 0
         for card in self.hand:
             hand_value += card.value
         return hand_value
+
+# To Do
+# Split into multiple Files
+# Add a exception if all cards were drawn from the deck
+# Add discard function
+# Create a Stack for the cards, that are discarded
