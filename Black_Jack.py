@@ -32,6 +32,17 @@ class Blackjack():
         self.set_players()
         self.deck = Deck()
 
+        # Loop throug all Cards in Hand, check if they have symbol and change the Value, so that it matches the Blackjack rules
+        for Card in self.deck.cards:
+            if Card.symbol == "Jack":
+                Card.set_value(10)
+            if Card.symbol == "Queen":
+                Card.set_value(10)
+            if Card.symbol == "King":
+                Card.set_value(10)
+            if Card.symbol == "Ace":
+                Card.set_value(11)
+
         self.play()
 
     def set_players(self):
@@ -62,6 +73,7 @@ class Blackjack():
         game_running = True
         # int - Players_done = Used to see, if all players are done drawing cards
         Players_done = 0
+
     # ---------------------------------------------------------------------- Game Loop -------------------------------------------------------------
 
         # Ask Players if they want to draw again, until no one wants to draw again
@@ -105,7 +117,3 @@ class Blackjack():
 
 
 game = Blackjack()
-
-# To Do
-# Fix Card Values
-# Add a exception if all cards were drawn from the deck
