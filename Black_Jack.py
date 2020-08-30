@@ -2,11 +2,13 @@
 # Description: The Goal is to get as close to 21 as Possible, without going higher  #
 # This game is build upon my CardClasses Library for Card games                     #
 # Creator: Tobias Dominik Weber aka MisterNSA                                       #
-# Version: 0.0 24.07.2020                                                           #
-# Planned Features: GUI with custom pixelart Cards,                                 #
+# Version: 0.2 30.08.2020                                                           #
+# Planned Features: GUI with custom pixelart Cards, Online Multiplayer              #
 #####################################################################################
 
-from CardClasses import *
+from Player import Player
+from Deck import Deck
+from Card import Card
 from operator import attrgetter
 
 
@@ -32,13 +34,12 @@ class Blackjack():
 
         self.play()
 
-    
     def set_players(self):
         """Ask how many Players are playing and creates them"""
         self.players = []
 
         valid = False
-        while valid = False:
+        while valid == False:
             try:
                 player_number = int(input("How many Players are Playing? "))
                 valid = True
@@ -62,7 +63,7 @@ class Blackjack():
         # int - Players_done = Used to see, if all players are done drawing cards
         Players_done = 0
     # ---------------------------------------------------------------------- Game Loop -------------------------------------------------------------
-    
+
         # Ask Players if they want to draw again, until no one wants to draw again
         while game_running:
             while Players_done < len(self.players):
@@ -93,7 +94,7 @@ class Blackjack():
         # sort list by highest value of handcards
         if len(could_win) > 0:
             could_win.sort(key=attrgetter("hand_value"), reverse=True)
-            ### I could print out between which players the draw occured, but for now im to lazy
+            # I could print out between which players the draw occured, but for now im to lazy
             if len(could_win) > 1:
                 if could_win[0].hand_value == could_win[1].hand_value:
                     print(f"Draw!")
