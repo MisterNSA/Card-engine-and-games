@@ -28,6 +28,8 @@ class Blackjack():
     # ---------------------------------------------------------------------- Setup -----------------------------------------------------------------
 
     def __init__(self):
+        self.show_rules()
+        input("\nPress any Key to continue")
         # list - players = Stores the Names of the Players
         self.set_players()
         self.deck = Deck()
@@ -42,7 +44,8 @@ class Blackjack():
                 Card.set_value(10)
             if Card.symbol == "Ace":
                 Card.set_value(11)
-
+        
+        # start the Main Game
         self.play()
 
     def set_players(self):
@@ -59,6 +62,26 @@ class Blackjack():
         # create the given Number of Players
         for _ in range(0, player_number):
             self.players.append(Bj_Player())
+
+    # ---------------------------------------------------------------------- Rules -----------------------------------------------------------------
+
+    def show_rules(self):
+        """Prints out the Games Rules"""
+        print("""
+This Version of Blackjack is a free for all Game. Either there is a won or it is a draw!
+
+***** Goal *****
+The Goal of the Game is to draw Cards in Order to get as close to a total card value of 21 as possible, but not over it.
+
+***** Rules *****
+All Players can draw as many cards as they want.
+When no one wants to draw again, the Game evaluates the Winner.
+
+***** Wins *****
+There are 2 Special wins who count higher than any other Wins.
+The second highest win is the BlackJack with an Ace and a King.
+The highest win is the Triple Seven. As the name says, you need to have three sevens in your hand.
+        """)
 
     # ---------------------------------------------------------------------- Main Game -------------------------------------------------------------
 
@@ -95,18 +118,55 @@ class Blackjack():
 
     # ---------------------------------------------------------------------- Evaluation ------------------------------------------------------------
 
-        # List - could_win = For Players that could have won. So you can keep all Players for the next round,
-        # but only need to check to check for Players with valid Score
+        # List - could_win = For Players that could have won. So you can keep all Players for the next round, but only need to check for Players with valid Score
         could_win = []
+
         for Bj_Player in self.players:
+            if Bj_Player.hand_value > 21:
+                # Check if Ace should have the Value of one or eleven | Always seek Players advantage
+                for Card in Bj_Player.hand:
+                    if Card.symbol == "Ace" and Bj_Player.hand_value > 21:
+                        Card.set_value(1)
+                        Bj_Player.set_hand_value()
+
+            # Check if Player can win
             if Bj_Player.hand_value <= 21:
+                sevens = 0
+                Ace = False
+                King = False
+                # 3 times 7
+                Drilling = []
+                # King and Ace
+                BlackJack = []
+                # Check if a special Win occured
+                for Card in Bj_Player.hand:
+                    if Card.symbol == "Ace":
+                        Ace = True
+                    elif Card.symbol == "King":
+                        King = True
+                    elif Card.value == 7:
+                        sevens += 1
+                if King and Ace:
+                    BlackJack.append(Bj_Player)
+                elif sevens == 3:
+                    Drilling.append(Bj_Player)
+
+                # add to List of Players that could have won
                 could_win.append(Bj_Player)
 
         # Check who won, or if the game was a draw
-        # sort list by highest value of handcards
         if len(could_win) > 0:
+            # Check for special Wins
+            if len(Drilling) > 0:
+                print(f"{Drilling[0].name} has Won with Triple seven!")
+            if len(BlackJack) > 0:
+                if len(BlackJack) > 1:
+                    print(f"Draw!")
+                else:
+                    print(f"{BlackJack[0].name} has Won!")
+
+            # Check for hand value nearest to 21
             could_win.sort(key=attrgetter("hand_value"), reverse=True)
-            # I could print out between which players the draw occured, but for now im to lazy
             if len(could_win) > 1:
                 if could_win[0].hand_value == could_win[1].hand_value:
                     print(f"Draw!")
@@ -117,3 +177,6 @@ class Blackjack():
 
 
 game = Blackjack()
+
+
+# Ad ace to be 1 or ten
