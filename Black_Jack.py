@@ -2,7 +2,7 @@
 # Description: The Goal is to get as close to 21 as Possible, without going higher  #
 # This game is build upon my CardClasses Library for Card games                     #
 # Creator: Tobias Dominik Weber aka MisterNSA                                       #
-# Version: 0.2 30.08.2020                                                           #
+# Version: 0.2 04.09.2020                                                           #
 # Planned Features: GUI with custom pixelart Cards, Online Multiplayer              #
 #####################################################################################
 
@@ -14,9 +14,14 @@ from operator import attrgetter
 
 class Bj_Player(Player):
     def __init__(self):
-        # string - name = name of the Player
-        # list - hand = All Cards the Player has
-        # bool - draw_again = Save when player doesnt wants to draw again
+        """
+        Stores information about the Person/s Playing Blackjack.
+
+        string - name = Name of the Player
+        list - hand = All Cards the Player has
+        bool - draw_again = Save when player doesnt wants to draw again
+        int - hand_value = The total value of all cards in players hand
+        """
         self.name = input("Please enter your name: ")
         self.hand = []
         self.draw_again = True
@@ -24,12 +29,17 @@ class Bj_Player(Player):
 
 
 class Blackjack():
-    """ This Class represents the Game of Blackjack"""
+    """
+    This Class represents the Game of Blackjack.
+    
+    list - players = Stores all Players playing the game
+    instance - deck = An instance of the Deck-Class. Used to store the cards used to play the game.
+    """
     # ---------------------------------------------------------------------- Setup -----------------------------------------------------------------
 
     def __init__(self):
         self.show_rules()
-        input("\nPress any Key to continue")
+        input("\nPress any Key to continue... \n")
         # list - players = Stores the Names of the Players
         self.set_players()
         self.deck = Deck()
@@ -49,7 +59,7 @@ class Blackjack():
         self.play()
 
     def set_players(self):
-        """Ask how many Players are playing and creates them"""
+        """Ask how many Players are playing and create them"""
         self.players = []
 
         valid = False
@@ -88,6 +98,7 @@ The highest win is the Triple Seven. As the name says, you need to have three se
     def play(self):
         """
         The method to play the game
+
         Lets the Players draw cards as long as they want.
         If no one wants to draw again, the method evaluates who has lost because of a Handvalue over 21
         Then it evaluates which Player has the Highest Score and returns the Winner, or a draw if more than one Person has the best Score 
@@ -177,6 +188,3 @@ The highest win is the Triple Seven. As the name says, you need to have three se
 
 
 game = Blackjack()
-
-
-# Ad ace to be 1 or ten

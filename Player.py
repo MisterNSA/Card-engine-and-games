@@ -12,9 +12,13 @@ class Player(object):
     # ------------------------------------------------------------------- Builder ----------------------------------------------------------------
 
     def __init__(self):
-        # string - name = name of the Player
-        # list - hand = All Cards the Player has
-        # int - hand_value = Total of all card values in hand
+        """
+        Class to model the Player of a Card game
+        
+        string - name = name of the Player
+        list - hand = All Cards the Player has
+        int - hand_value = Total of all card values in hand
+        """
         self.name = input("Please enter your name: ")
         self.hand = []
         self.hand_value = 0
@@ -27,7 +31,12 @@ class Player(object):
         return self
 
     def discard(self, placeInHand):
-        """takes the position of a card and removes it from the hand"""
+        """
+        takes the position of a card and removes it from the hand
+        
+        arguments:
+        placeInHand - Index of the Card in Hand
+        """
         return self.hand.pop(placeInHand - 1)
 
     def set_hand_value(self):
@@ -51,7 +60,5 @@ class Player(object):
         return hand_value
 
 # To Do
-# Split into multiple Files
 # Add a exception if all cards were drawn from the deck
-# Add discard function
 # Create a Stack for the cards, that are discarded

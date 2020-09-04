@@ -12,7 +12,7 @@ class Deck(object):
     # ------------------------------------------------------------------- Builder ----------------------------------------------------------------
 
     def __init__(self):
-        # list - cards = The List of all cards stored in this deck
+        """ list - cards = The List of all cards stored in this deck"""
         self.cards = []
         # Create Cards and shuffle the Deck
         self.build()

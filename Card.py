@@ -1,18 +1,20 @@
 #####################################################################################
 # Description: The Base of all Cards                                                #
 # Creator: Tobias Dominik Weber aka MisterNSA                                       #
-# Version: 0.2 30.08.2020                                                           #
+# Version: 0.2 04.09.2020                                                           #
 #####################################################################################
 
 
 class Card(object):
     # ------------------------------------------------------------------- Builder ----------------------------------------------------------------
 
-    # string - suit = Spades, Clubs, Diamond or Hearts
-    # string - value = from 2 to 14
-    # string - symbol = Holds special symbol from Jack to Ace, else None
-    # string - name = The full name of the cards - easier to read for Humans but useless for operations
     def __init__(self, suit, val):
+        """ 
+        string - suit = Spades, Clubs, Diamond or Hearts
+        string - value = from 2 to 14
+        string - symbol = Holds special symbol from Jack to Ace, else None
+        string - name = The full name of the cards - easier to read for Humans but useless for operations
+        """
         self.suit = suit
         self.value = val
         self.symbol = None

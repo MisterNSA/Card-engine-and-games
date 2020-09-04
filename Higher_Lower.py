@@ -14,6 +14,12 @@ class HigherLowerGame(object):
     # ---------------------------------------------------------------------- Setup -----------------------------------------------------------------
 
     def __init__(self):
+        """
+        Lets the player play the game
+
+        Bool - win = Has the Player won yet?
+        Bool - loose = Has the Player lost yet?
+        """
         self.win = False
         self.loose = False
         # create Deck
@@ -50,6 +56,14 @@ class HigherLowerGame(object):
     # ---------------------------------------------------------------------- Main Game -------------------------------------------------------------
 
     def play(self, Deck, player, Cards_left_to_win):
+        """
+        Main Method to start the actual game
+
+        arguments: 
+        Deck - Instance of Deck-Class which stores all Cards
+        player - Stores player name
+        Cards_left_to_win - With how many cards left in the deck the player wins
+        """
         currentCard = Deck.drawCard()
         print("The card is: " + Card.show(currentCard))
 
@@ -78,8 +92,8 @@ class HigherLowerGame(object):
 
     # ---------------------------------------------------------------------- Functionality ---------------------------------------------------------
     
-    # returns the players guess, if the next card is higher or lower
     def getGuess(self):
+        """returns the players guess, if the next card is higher or lower"""
         valid_input = False
 
         while valid_input == False:
