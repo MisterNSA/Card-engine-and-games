@@ -9,8 +9,8 @@ I think about adding more customisation to the Cards, so that games like UNO are
 
 # Games implemented yet:
 
-# HigherLower_Cardgame
+ **HigherLower_Cardgame**
 This is an OOP approach to create a cardgame, where you have to guess, if the next card is higher or lower than the current
 
-# BlackJack
+ **BlackJack**
 This Version is not like one you play in Casinos. You play against other players. The Person closesd to a Hand Value of 21 Wins the Game. The Ace is counted as 1 or 10, based on whats better for you. If you draw and your hand Value raises over 21, you have automaticly lost.  
