@@ -31,7 +31,7 @@ class Bj_Player(Player):
 class Blackjack():
     """
     This Class represents the Game of Blackjack.
-    
+
     list - players = Stores all Players playing the game
     instance - deck = An instance of the Deck-Class. Used to store the cards used to play the game.
     """
@@ -54,7 +54,7 @@ class Blackjack():
                 Card.set_value(10)
             if Card.symbol == "Ace":
                 Card.set_value(11)
-        
+
         # start the Main Game
         self.play()
 
@@ -174,13 +174,12 @@ The highest win is the Triple Seven. As the name says, you need to have three se
                 if len(BlackJack) > 1:
                     print(f"Draw!")
                 else:
-                    print(f"{BlackJack[0].name} has Won!")
+                    print(f"{BlackJack[0].name} has Won with a BlackJack!")
 
             # Check for hand value nearest to 21
             could_win.sort(key=attrgetter("hand_value"), reverse=True)
-            if len(could_win) > 1:
-                if could_win[0].hand_value == could_win[1].hand_value:
-                    print(f"Draw!")
+            if len(could_win) > 1 and could_win[0].hand_value == could_win[1].hand_value:
+                print(f"Draw!")
             else:
                 print(f"{could_win[0].name} has Won!")
         else:
